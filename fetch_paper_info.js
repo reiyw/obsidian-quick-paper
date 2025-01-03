@@ -82,7 +82,7 @@ async function fetchPaperInfoFromArxiv(id) {
 	const abs_html = new DOMParser().parseFromString(abs_resp, "text/html");
 
 	return {
-		title: entry.querySelector("title").textContent,
+		title: abs_html.querySelector('meta[name="citation_title"]').content,
 		authors: Array.from(entry.querySelectorAll("author")).map(
 			(author) => author.querySelector("name").textContent,
 		),
